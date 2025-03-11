@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 // Import Components
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/products/:id" element={<ProductDetail />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
       {/* Protected Routes (Require Authentication) */}
       <Route path="/checkout" element={<ProtectedRoute component={Checkout} />} />
