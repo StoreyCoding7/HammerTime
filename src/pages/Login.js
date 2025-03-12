@@ -14,16 +14,28 @@ const Login = () => {
     setError(null);
 
     try {
-      // Placeholder for API call
-      console.log("Logging in with:", { email, password });
+      const response = await fetch("http://localhost:5001/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-      // Simulate successful login
-      setTimeout(() => {
-        setLoading(false);
-        navigate("/"); // Redirect to home or dashboard
-      }, 1000);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+  
+      // Store the token in localStorage
+      localStorage.setItem("authToken", data.token);
+  
+      // Redirect user to the homepage or another protected route
+      navigate("/"); 
     } catch (err) {
-      setError("Invalid email or password");
+      setError(err.message);
+    } finally {
       setLoading(false);
     }
   };
@@ -34,31 +46,29 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
         <div>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
         <div>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
+          {error && <p className="error">{error}</p>}
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
         </div>
       </form>
-
-      
 
       <p>
         <a href="/forgot-password">Forgot Password?</a>
