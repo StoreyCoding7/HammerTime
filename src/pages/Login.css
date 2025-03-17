@@ -1,0 +1,22 @@
+.login-container {
+    margin: 1em;
+}
+
+#email {
+    /* padding-top: .5em; */
+}
+
+#password {
+    padding-top: .5em;
+}
+
+#login {
+    padding-top: .5em;
+    padding-left: .5em;
+    width: 5em;
+}
+
+#login button {
+    width: 5em;
+    height: 2em;
+}

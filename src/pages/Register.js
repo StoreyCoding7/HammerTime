@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import "./Register.css";
 
 // Define validation schema using Yup
 const schema = yup.object().shape({
@@ -37,46 +38,46 @@ const Register = () => {
 
   return (
     <div>
-      <div>
+      <div class="create-acc">
         <h2>Create an Account</h2>
         
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Name Field */}
           <div>
-            <label>Name</label>
+            <label id="name">Name</label>
             <input {...register("name")}/>
             <p>{errors.name?.message}</p>
           </div>
 
           {/* Email Field */}
           <div>
-            <label>Email</label>
+            <label id="email">Email</label>
             <input type="email" {...register("email")}/>
             <p>{errors.email?.message}</p>
           </div>
 
           {/* Password Field */}
           <div>
-            <label>Password</label>
+            <label id="password">Password</label>
             <input type="password" {...register("password")}/>
             <p>{errors.password?.message}</p>
           </div>
 
           {/* Confirm Password Field */}
           <div>
-            <label>Confirm Password</label>
+            <label id="confirm">Confirm Password</label>
             <input type="password" {...register("confirmPassword")}/>
             <p>{errors.confirmPassword?.message}</p>
           </div>
 
           {/* Submit Button */}
-          <button type="submit">
+          <button type="submit" id="register-submit">
             Register
           </button>
         </form>
 
         <p>
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <a href="/login" id="login-button">Login</a>
         </p>
 
       </div>

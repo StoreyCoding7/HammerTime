@@ -1,0 +1,25 @@
+.create-acc {
+    margin: 1em;
+}
+
+#name {
+    padding-inline: 5px;
+}
+
+#email{
+    padding-inline: 5px;
+}
+
+#password {
+    padding-inline: 5px;
+}
+
+#confirm {
+    padding-inline: 5px;
+}
+
+#register-submit {
+    padding-inline: 5px;
+    width: 5em;
+    height: 2em;
+}

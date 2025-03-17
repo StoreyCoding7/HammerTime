@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
+
 
 const Login = () => {
+  const { user, login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/"); // Redirect if already logged in
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,13 +48,15 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
+
+    
   };
 
   return (
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div id="email">
           <input
             type="email"
             placeholder="Email"
@@ -53,7 +65,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div id="password">
           <input
             type="password"
             placeholder="Password"
@@ -62,7 +74,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div id="login">
           {error && <p className="error">{error}</p>}
           <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login"}

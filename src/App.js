@@ -1,18 +1,19 @@
-//
 import React from "react";
-import { BrowserRouter as Router, Routes, Route,  } from "react-router-dom";
-// Import Files
-import AppRoutes from "./routes.js"; // Import the routes file
-import './App.css';
+import { BrowserRouter as Router, } from "react-router-dom";
+import AppRoutes from "./routes.js";
+import Navbar from "./components/Navbar.js";
+import {AuthProvider} from "./context/AuthContext";
+
 
 
 function App() {
   return (
-    <Router>
-
-     <AppRoutes />
-
-    </Router>
+    <AuthProvider>
+     <Router>
+      <Navbar/>
+      <AppRoutes/>
+     </Router>
+    </AuthProvider>
   );
 }
 

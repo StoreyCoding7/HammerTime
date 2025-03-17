@@ -18,9 +18,11 @@ app.use(express.urlencoded({ extended: true })); // Handle form data parsing
 // Import Routes (Fixing the duplicate issue)
 const authRoutes = require("./routes/authRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const productsRoutes = require("./routes/productsRoutes"); 
 
 app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/products", productsRoutes);
 
 // Simple test route
 app.get("/", (req, res) => {
